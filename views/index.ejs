@@ -7,25 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <% if (!locals.Error) {%>
-        <h1>UV Checker at KMUTT</h1>
-        <h2>by NinePTH CPE</h2>
-        <p>
-            Current UV = <%= currentUV %>
-        </p>
-        <p>
-            at (now) <%= time %>
-        </p>
-
-        <p>
-            Max UV = <%= maxUV %>
-        </p>
-        <p>
-            at (at solar noon) <%= maxUVTime %>
-        </p>
-    <% } else { %>
-        <p><%= Error %></p>
-    <% } %>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.1070402519913!2d100.49386787508838!3d13.651252186730192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a251bb6b0cf1%3A0xf656e94ff13324ad!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiX4LiE4LmC4LiZ4LmC4Lil4Lii4Li14Lie4Lij4Liw4LiI4Lit4Lih4LmA4LiB4Lil4LmJ4Liy4LiY4LiZ4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1726903656162!5m2!1sth!2sth" width="600" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="card">
+        <header>
+            <div class="headerContainer">
+                <h1>UV Checker at KMUTT</h1>
+                <h2>by NinePTH</h2>
+            </div>
+        </header>
+        <% if (!locals.Error) {%>
+            <main>
+                <div class="mainContainer">
+                    <p>
+                        Current UV is: <%= currentUV %> (at <%= time %>)
+                    </p>
+                    <% if (currentUV >= 3) { %><p>UV is high, please wear sunscreen</p><% } else { %><p>UV is low. No need to wear sunscreen</p><% } %>
+            
+                    <p class="maxUV">
+                        The highest UV is: <%= maxUV %> at <%= maxUVTime %> <br>
+                        please wear sunscreen at that time.
+                    </p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.1070402519913!2d100.49386787508838!3d13.651252186730192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a251bb6b0cf1%3A0xf656e94ff13324ad!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiX4LiE4LmC4LiZ4LmC4Lil4Lii4Li14Lie4Lij4Liw4LiI4Lit4Lih4LmA4LiB4Lil4LmJ4Liy4LiY4LiZ4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1726903656162!5m2!1sth!2sth" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </main>
+        <% } else { %>
+            <main>
+                <p style="color: rgb(255, 101, 101);"><%= Error %></p>
+            </main>
+        <% } %>
+    </div>
 </body>
 </html>
