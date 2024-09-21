@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
         const result = response.data.result
 
         const currentTimeStamp = result.uv_time
-        const maxUVTimeStamp = result.uv_time
+        const maxUVTimeStamp = result.uv_max_time
         const Current = new Date(currentTimeStamp);
         const maxUVTime = new Date(maxUVTimeStamp);
         const readableCurrentTime = Current.toLocaleString('en-US', timeOptions); // Since server is sent UTC, I have to change it to human version
@@ -37,7 +37,7 @@ app.get("/", async (req, res) => {
 
         res.render("index.ejs", { currentUV: result.uv, time: readableCurrentTime, maxUV: result.uv_max, maxUVTime: readableMaxUVTimeTime });
     } catch (error) {
-        res.render("index.ejs", { Error: `Error ${error}` });
+        res.render("index.ejs", { Error: `Server error, please try again later.` });
     }
 });
 
